@@ -15,42 +15,99 @@ class nextPage extends StatefulWidget {
 
 class _nextPageState extends State<nextPage> {
 
-  int _currentIntValue = 1;
-  int _currentHorizontalIntValue = 1;
+  int? selectedNumber;
+
+  void _showNumberPickerDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Choose Number'),
+          content: Column(
+            children: [
+              Text('Select a number between 1 and 5:'),
+              SizedBox(height: 16),
+              DropdownButton<int>(
+                value: selectedNumber,
+                items: [
+                  DropdownMenuItem<int>(
+                    value: 1,
+                    child: Text('1'),
+                  ),
+                  DropdownMenuItem<int>(
+                    value: 2,
+                    child: Text('2'),
+                  ),
+                  DropdownMenuItem<int>(
+                    value: 3,
+                    child: Text('3'),
+                  ),
+                  DropdownMenuItem<int>(
+                    value: 4,
+                    child: Text('4'),
+                  ),
+                  DropdownMenuItem<int>(
+                    value: 5,
+                    child: Text('5'),
+                  ),
+                ],
+                onChanged: (value) {
+                  setState(() {
+                    selectedNumber = value;
+                  });
+                },
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   var daycontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-        Row(
-        children: [
-        Expanded(
-          flex: 70,
-          child: Container(
-            margin: const EdgeInsets.only(top: 20, bottom: 20, left: 80),
-            child: Text('Generate Password',
-              style: GoogleFonts.caveat(
-                  fontSize: 30, fontWeight: FontWeight.bold),
+            Text(
+              'Selected Number:',
+              style: TextStyle(fontSize: 24),
             ),
-          ),
+            SizedBox(height: 16),
+            Text(
+              selectedNumber != null ? selectedNumber.toString() : '-',
+              style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 24),
+            ElevatedButton(
+              child: Text('Choose Number'),
+              onPressed: () {
+                _showNumberPickerDialog();
+              },
+            ),
+          ],
         ),
-        Expanded(
-          flex: 15,
-          child: Container(child: Image(
-            image: AssetImage('assets/homelogo.png'),
-          ),
-          ),
-        ),
-        ],
       ),
-      ]
-    ),
-
-    )
     );
   }
 }
+
+
+
+
+
+
+
+
