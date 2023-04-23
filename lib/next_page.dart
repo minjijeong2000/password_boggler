@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numberpicker/numberpicker.dart';
 
@@ -63,6 +64,66 @@ class _nextPageState extends State<nextPage> {
               child: Text('OK', style: GoogleFonts.shrikhand()),
               onPressed: () {
                 Navigator.of(context).pop();
+                if (selectedNumber != null) {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text(
+                          'Confirmation',
+                          style: GoogleFonts.shrikhand(),
+                        ),
+                        content: Column(
+                          children: [
+                            Text(
+                              'You have selected $selectedNumber rotors.',
+                              style: GoogleFonts.shrikhand(),
+                            ),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            Text(
+                              'Please enter $selectedNumber random numbers:',
+                              style: GoogleFonts.shrikhand(),
+                            ),
+                            SizedBox(
+                              height: 16,
+                            ),
+                            TextField(
+                              controller: domainNameController,
+                              obscureText: false,
+                              keyboardType: TextInputType.number,
+                              maxLength: selectedNumber,
+                              inputFormatters: [
+                                LengthLimitingTextInputFormatter(selectedNumber),
+                              ],
+                              decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                                border: OutlineInputBorder(),
+                                hintText: 'Enter random numbers',
+                                labelText: 'Random Numbers',
+                              ),
+                              style: GoogleFonts.shrikhand(),
+                            ),
+                          ],
+                        ),
+                        actions: [
+                          TextButton(
+                            child: Text(
+                              'OK',
+                              style: GoogleFonts.shrikhand(),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
               },
             ),
           ],
@@ -72,53 +133,95 @@ class _nextPageState extends State<nextPage> {
   }
 
   var daycontroller = TextEditingController();
+  var domainNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-        Expanded(
-          flex: 10,
-          child: Image(
-            image: AssetImage('assets/Password-Boggler1.png'),
+        children: [
+          Expanded(
+            flex: 20,
+            child: Image(
+              image: AssetImage('assets/Password-Boggler1.png'),
+            ),
           ),
-        ),
-        Expanded(
-          flex: 70,
-          child: Center(
+          Expanded(
+            flex: 50,
+            child: Center(
+              child: Column(
+                children: [
+                  Text(
+                    'Select Number of Rotors 1-5:',
+                    style: GoogleFonts.shrikhand(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Text(
+                    selectedNumber != null ? selectedNumber.toString() : '-',
+                    style:
+                    TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  ElevatedButton(
+                    child: Text(
+                      'Click to Select',
+                      style: GoogleFonts.shrikhand(),
+                    ),
+                    onPressed: () {
+                      _showNumberPickerDialog();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 30,
             child: Column(
               children: [
-                Text(
-                  'Select Number of Rotors 1-5:',
-                  style: GoogleFonts.shrikhand(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                Text(
-                  selectedNumber != null ? selectedNumber.toString() : '-',
-                  style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 24,
+                Container(
+                  margin: const EdgeInsets.only(top: 40, bottom: 16),
+                  width: 400,
+                  child: TextField(
+                    controller: domainNameController,
+                    obscureText: false,
+                    decoration: const InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)),
+                      border: OutlineInputBorder(),
+                      hintText: 'Secret Password Generated!',
+                      labelText: 'Secret Password Generated!',
+                    ),
+                    style: GoogleFonts.shrikhand(),
+                  ),
                 ),
                 ElevatedButton(
                   child: Text(
-                    'Click to Select',
+                    'Copy',
                     style: GoogleFonts.shrikhand(),
                   ),
                   onPressed: () {
-                    _showNumberPickerDialog();
+                    Clipboard.setData(ClipboardData(
+                      text: domainNameController.text,
+                    ));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Password Copied!'),
+                      ),
+                    );
                   },
                 ),
               ],
             ),
           ),
-        )
-      ]),
+        ],
+      ),
     );
   }
 }
