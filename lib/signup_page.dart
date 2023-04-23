@@ -34,7 +34,7 @@ class _SignupPageState extends State<SignupPage> {
                         margin: EdgeInsets.only(top: 25),
                         child: Text(
                           'Password-Boggler',
-                          style: GoogleFonts.caveat(fontSize: 30, fontWeight: FontWeight.bold),
+                          style: GoogleFonts.shrikhand(fontSize: 30, fontWeight: FontWeight.bold),
                           // TextStyle(
                           //   fontSize: 15,
                           //   fontWeight: FontWeight.bold
@@ -48,7 +48,7 @@ class _SignupPageState extends State<SignupPage> {
                 flex: 20,
                 child: Image(
                   // image: AssetImage('assets/home.jpg'),
-                  image: AssetImage('https://pixy.org/images/placeholder.png'),
+                  image: AssetImage('assets/Password-Boggler1.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -62,7 +62,7 @@ class _SignupPageState extends State<SignupPage> {
                           margin: const EdgeInsets.only(top:20, bottom: 20),
                           child: Text(
                             'Signup',
-                            style: GoogleFonts.caveat(fontSize: 30, fontWeight: FontWeight.bold),
+                            style: GoogleFonts.shrikhand(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.orangeAccent),
                           ),
                         ),
                         Container(
@@ -74,7 +74,7 @@ class _SignupPageState extends State<SignupPage> {
                               border: OutlineInputBorder(),
                               labelText: 'Name',
                             ),
-                            style: GoogleFonts.caveat(),
+                            style: GoogleFonts.shrikhand(),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter your name.';
@@ -92,7 +92,7 @@ class _SignupPageState extends State<SignupPage> {
                               border: OutlineInputBorder(),
                               labelText: 'Email',
                             ),
-                            style: GoogleFonts.caveat(),
+                            style: GoogleFonts.shrikhand(),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter an email.';
@@ -110,7 +110,7 @@ class _SignupPageState extends State<SignupPage> {
                               border: OutlineInputBorder(),
                               labelText: 'Password',
                             ),
-                            style: GoogleFonts.caveat(),
+                            style: GoogleFonts.shrikhand(),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter a password.';
@@ -131,7 +131,7 @@ class _SignupPageState extends State<SignupPage> {
                               border: OutlineInputBorder(),
                               labelText: 'Confirm Password',
                             ),
-                            style: GoogleFonts.caveat(),
+                            style: GoogleFonts.shrikhand(),
                             validator: (value) {
                               if (value != passwordController.text) {
                                 return 'Password does not match';
@@ -152,7 +152,7 @@ class _SignupPageState extends State<SignupPage> {
                                   side: BorderSide(color: Colors.black),
                                 ),
                               ),
-                              backgroundColor: MaterialStatePropertyAll<Color>(Colors.white),
+                              backgroundColor: MaterialStatePropertyAll<Color>(Colors.orangeAccent),
                             ),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
@@ -173,7 +173,7 @@ class _SignupPageState extends State<SignupPage> {
                             },
                             child: Text(
                               'Sign up',
-                              style: GoogleFonts.caveat(color: Colors.black),
+                              style: GoogleFonts.shrikhand(color: Colors.black),
                             ),
                           ),
                         ),
