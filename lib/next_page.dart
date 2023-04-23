@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:password_boggler/save_page.dart';
 
 class nextPage extends StatefulWidget {
   const nextPage({Key? key}) : super(key: key);
@@ -146,13 +147,13 @@ class _nextPageState extends State<nextPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
-                flex: 20,
+                flex: 15,
                 child: Image(
                   image: AssetImage('assets/Password-Boggler1.png'),
                 ),
               ),
               Expanded(
-                flex: 30,
+                flex: 25,
                 child: Center(
                   child: Column(
                     children: [
@@ -261,6 +262,33 @@ class _nextPageState extends State<nextPage> {
                       },
                     ),
                   ],
+                ),
+              ),
+              Expanded(
+                flex: 10,
+                child: Container(
+                  margin: const EdgeInsets.only(top: 20, bottom: 30),
+                  width: 200,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: BorderSide(color: Colors.black)
+                            )
+                        ),
+                        backgroundColor: MaterialStatePropertyAll<Color>(Colors.orangeAccent)
+                    ),
+                    onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => savePage()),
+                        );
+                    },
+                    child: Text('View your Savings',
+                      style: GoogleFonts.shrikhand(color: Colors.black),
+                    ),
+                  ),
                 ),
               ),
             ],
