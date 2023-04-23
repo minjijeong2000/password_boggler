@@ -90,7 +90,7 @@ class _nextPageState extends State<nextPage> {
                               height: 16,
                             ),
                             TextField(
-                              controller: domainNameController,
+                              controller: secretPasswordController,
                               obscureText: false,
                               keyboardType: TextInputType.number,
                               maxLength: selectedNumber,
@@ -134,93 +134,138 @@ class _nextPageState extends State<nextPage> {
 
   var daycontroller = TextEditingController();
   var domainNameController = TextEditingController();
+  var secretPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: 20,
-            child: Image(
-              image: AssetImage('assets/Password-Boggler1.png'),
-            ),
-          ),
-          Expanded(
-            flex: 50,
-            child: Center(
-              child: Column(
-                children: [
-                  Text(
-                    'Select Number of Rotors 1-5:',
-                    style: GoogleFonts.shrikhand(
-                        fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Text(
-                    selectedNumber != null ? selectedNumber.toString() : '-',
-                    style:
-                    TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 24,
-                  ),
-                  ElevatedButton(
-                    child: Text(
-                      'Click to Select',
-                      style: GoogleFonts.shrikhand(),
-                    ),
-                    onPressed: () {
-                      _showNumberPickerDialog();
-                    },
-                  ),
-                ],
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                flex: 20,
+                child: Image(
+                  image: AssetImage('assets/Password-Boggler1.png'),
+                ),
               ),
-            ),
-          ),
-          Expanded(
-            flex: 30,
-            child: Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 40, bottom: 16),
-                  width: 400,
-                  child: TextField(
-                    controller: domainNameController,
-                    obscureText: false,
-                    decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)),
-                      border: OutlineInputBorder(),
-                      hintText: 'Secret Password Generated!',
-                      labelText: 'Secret Password Generated!',
-                    ),
-                    style: GoogleFonts.shrikhand(),
-                  ),
-                ),
-                ElevatedButton(
-                  child: Text(
-                    'Copy',
-                    style: GoogleFonts.shrikhand(),
-                  ),
-                  onPressed: () {
-                    Clipboard.setData(ClipboardData(
-                      text: domainNameController.text,
-                    ));
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Password Copied!'),
+              Expanded(
+                flex: 30,
+                child: Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        'Select Number of Rotors 1-5:',
+                        style: GoogleFonts.shrikhand(
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                    );
-                  },
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Text(
+                        selectedNumber != null ? selectedNumber.toString() : '-',
+                        style:
+                        TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 24,
+                      ),
+                      ElevatedButton(
+                        child: Text(
+                          'Click to Select',
+                          style: GoogleFonts.shrikhand(),
+                        ),
+                        onPressed: () {
+                          _showNumberPickerDialog();
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
+              ),
+              Expanded(
+                flex: 25,
+                child: Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(top: 40, bottom: 16),
+                      width: 400,
+                      child: TextField(
+                        controller: secretPasswordController,
+                        obscureText: false,
+                        decoration: const InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black)),
+                          border: OutlineInputBorder(),
+                          hintText: 'Secret Password Generated!',
+                          labelText: 'Secret Password Generated!',
+                        ),
+                        style: GoogleFonts.shrikhand(),
+                      ),
+                    ),
+                    ElevatedButton(
+                      child: Text(
+                        'Copy',
+                        style: GoogleFonts.shrikhand(),
+                      ),
+                      onPressed: () {
+                        Clipboard.setData(ClipboardData(
+                          text: secretPasswordController.text,
+                        ));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Password Copied!'),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 25,
+                child: Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(top: 40, bottom: 16),
+                      width: 400,
+                      child: TextField(
+                        controller: domainNameController,
+                        obscureText: false,
+                        decoration: const InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black)),
+                          border: OutlineInputBorder(),
+                          hintText: 'Write Domain Name to Save',
+                          labelText: 'Write Domain Name to Save',
+                        ),
+                        style: GoogleFonts.shrikhand(),
+                      ),
+                    ),
+                    ElevatedButton(
+                      child: Text(
+                        'Save',
+                        style: GoogleFonts.shrikhand(),
+                      ),
+                      onPressed: () {
+                        Clipboard.setData(ClipboardData(
+                          text: domainNameController.text,
+                        ));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Successfully Saved!'),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
