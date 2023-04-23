@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:password_boggler/next_page.dart';
 
 class savePage extends StatefulWidget {
   const savePage({Key? key}) : super(key: key);
@@ -49,77 +50,109 @@ class _savePageState extends State<savePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  flex: 70,
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 20, bottom: 20, left: 80),
-                    child: Text('Saved Lists',
-                      style: GoogleFonts.shrikhand(
-                          fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 15,
-                  child: Container(child: Image(
-                    image: AssetImage('assets/Password-Boggler1.png'),
-                  ),
-                  ),
-                ),
-              ],
-            ),
-            Container(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height,
-              child: ListView.builder(
-                itemCount: domainList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Container(
-                      height: 50,
-                      margin: EdgeInsets.only(
-                          top: 5, bottom: 5, left: 20, right: 20),
-                      child: Row(
-                        children: [
-                          Flexible(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text('${domainList[index]['name']}',
-                                      style: GoogleFonts.shrikhand(fontSize: 12,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold)
-                                  ),
-                                  margin: EdgeInsets.only(right: 20),
-                                ),
-
-                                Container(
-                                  child: Text('${domainList[index]['password']}',
-                                      style: GoogleFonts.shrikhand(
-                                          fontSize: 12, color: Colors.black)
-                                  ),
-                                  margin: EdgeInsets.only(right: 20),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
+      body: Container(
+        alignment: Alignment.center,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    flex: 70,
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 20, bottom: 20, left: 80),
+                      child: Text('Saved Lists',
+                        style: GoogleFonts.shrikhand(
+                            fontSize: 30, fontWeight: FontWeight.bold),
                       ),
                     ),
-                  );
-                },
+                  ),
+                  Expanded(
+                    flex: 15,
+                    child: Container(child: Image(
+                      image: AssetImage('assets/Password-Boggler1.png'),
+                    ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
+              Container(
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height,
+                child: ListView.builder(
+                  itemCount: domainList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      title: Container(
+                        height: 50,
+                        margin: EdgeInsets.only(
+                            top: 5, bottom: 5, left: 20, right: 20),
+                        child: Row(
+                          children: [
+                            Flexible(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    child: Text('${domainList[index]['name']}',
+                                        style: GoogleFonts.shrikhand(fontSize: 12,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold)
+                                    ),
+                                    margin: EdgeInsets.only(right: 20),
+                                  ),
+
+                                  Container(
+                                    child: Text('${domainList[index]['password']}',
+                                        style: GoogleFonts.shrikhand(
+                                            fontSize: 12, color: Colors.black)
+                                    ),
+                                    margin: EdgeInsets.only(right: 20),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              Expanded(
+                flex: 20,
+                child: Container(
+                  margin: const EdgeInsets.only(top: 20, bottom: 30),
+                  width: 200,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: BorderSide(color: Colors.black)
+                            )
+                        ),
+                        backgroundColor: MaterialStatePropertyAll<Color>(Colors.orangeAccent)
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => nextPage()),
+                      );
+                    },
+                    child: Text('Go Back',
+                      style: GoogleFonts.shrikhand(color: Colors.black),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
