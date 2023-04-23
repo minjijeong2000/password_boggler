@@ -105,7 +105,11 @@ class Engima
 
 
                 let = alpha[loc];
-
+                if(!uppercase)
+                    {
+                        let.toUpperCase();
+                        uppercase = true;
+                    }
                 encrypted += let;
 
                 Click();
