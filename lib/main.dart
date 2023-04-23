@@ -97,41 +97,41 @@ class _MyHomePageState extends State<MyHomePage> {
           constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
           child: Column(
             children: [
-              // Expanded(
-              //     flex: 10,
-              //     child: Column(
-              //       children: [
-              //         // Container(
-              //         //   margin: EdgeInsets.only(top: 25),
-              //         //   child: Text(
-              //         //     'Password-Boggler',
-              //         //     style: GoogleFonts.caveat(fontSize: 30, fontWeight: FontWeight.bold),
-              //         //     // TextStyle(
-              //         //     //   fontSize: 15,
-              //         //     //   fontWeight: FontWeight.bold
-              //         //     // ),
-              //         //   ),
-              //         // )
-              //       ],
-              //     )
-              // ),
+              Expanded(
+                  flex: 10,
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 25),
+                        child: Text(
+                          'Password-Boggler',
+                          style: GoogleFonts.caveat(fontSize: 30, fontWeight: FontWeight.bold),
+                          // TextStyle(
+                          //   fontSize: 15,
+                          //   fontWeight: FontWeight.bold
+                          // ),
+                        ),
+                      )
+                    ],
+                  )
+              ),
               const Expanded(
-                flex: 40,
+                flex: 30,
                 child: Image(
                   // image: AssetImage('assets/home.jpg'),
-                  image: AssetImage('assets/Password-Boggler1.png'),
+                  image: AssetImage('https://pixy.org/images/placeholder.png'),
                   fit: BoxFit.cover,
                 ),
               ),
               Expanded(
-                flex: 60,
+                flex: 50,
                 child: Column(
                   children: [
                     Container(
                       margin: const EdgeInsets.only(top:20, bottom: 20),
                       child: Text(
                         'Login',
-                        style: GoogleFonts.shrikhand(fontSize: 30, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.caveat(fontSize: 30, fontWeight: FontWeight.bold),
                       ),
                     ),
                     Container(
@@ -143,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           border: OutlineInputBorder(),
                           labelText: 'Email',
                         ),
-                        style: GoogleFonts.shrikhand(),
+                        style: GoogleFonts.caveat(),
                       ),
                     ),
                     Container(
@@ -155,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           border: OutlineInputBorder(),
                           labelText: 'Password',
                         ),
-                        style: GoogleFonts.shrikhand(),
+                        style: GoogleFonts.caveat(),
                       ),
                     ),
                     Container(
@@ -164,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       TextButton(
                         child: Text(
                           'Forgot Password?',
-                          style: GoogleFonts.shrikhand(color: Colors.red),
+                          style: GoogleFonts.caveat(color: Colors.red),
                         ),
                         onPressed: () {
                           Navigator.push(
@@ -197,7 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           child:
                           Text(
                             'Sign up',
-                            style: GoogleFonts.shrikhand(color: Colors.black),
+                            style: GoogleFonts.caveat(color: Colors.black),
                           ),
                         )
                     ),
@@ -213,7 +213,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       side: BorderSide(color: Colors.black)
                                   )
                               ),
-                              backgroundColor: MaterialStatePropertyAll<Color>(Colors.orangeAccent)
+                              backgroundColor: MaterialStatePropertyAll<Color>(Colors.deepOrangeAccent)
                           ),
                           onPressed: () {
                             FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text)
@@ -229,7 +229,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             });
                           },
                           child: Text('Login',
-                            style: GoogleFonts.shrikhand(color: Colors.black),
+                            style: GoogleFonts.caveat(color: Colors.black),
                           ),
                         ),
                       ),
