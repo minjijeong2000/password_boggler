@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:password_boggler/ResetPassword.dart';
 import 'package:password_boggler/next_page.dart';
 import 'package:password_boggler/signup_page.dart';
 
@@ -160,9 +161,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(
                       margin: const EdgeInsets.only(top: 10, bottom: 10),
                       child:
-                      Text(
-                        'Forgot Password?',
-                        style: GoogleFonts.caveat(color: Colors.red),
+                      TextButton(
+                        child: Text(
+                          'Forgot Password?',
+                          style: GoogleFonts.caveat(color: Colors.red),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ResetPassword()),
+                          );
+                        },
                       ),
                     ),
                     Container(
