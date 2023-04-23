@@ -103,15 +103,11 @@ class _savePageState extends State<savePage> {
                                 ),
 
                                 Container(
-                                  child: Text('${domainList[index]['day']}',
+                                  child: Text('${domainList[index]['password']}',
                                       style: GoogleFonts.shrikhand(
                                           fontSize: 12, color: Colors.black)
                                   ),
                                   margin: EdgeInsets.only(right: 20),
-                                ),
-                                Text('${domainList[index]['time']}',
-                                    style: GoogleFonts.shrikhand(
-                                        fontSize: 12, color: Colors.black)
                                 ),
                               ],
                             ),

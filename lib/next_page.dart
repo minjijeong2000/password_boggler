@@ -280,7 +280,22 @@ class _nextPageState extends State<nextPage> {
                         backgroundColor: MaterialStatePropertyAll<Color>(Colors.orangeAccent)
                     ),
                     onPressed: () {
-                        Navigator.push(
+                      print(domainNameController.text);
+                      print(secretPasswordController.text);
+
+                      var timestamp = new DateTime.now().millisecondsSinceEpoch;
+
+                      FirebaseDatabase.instance.reference().child("domains/dom" + timestamp.toString()).set(
+                      {
+                        "name" : domainNameController.text,
+                        "password" : secretPasswordController.text,
+                      }
+                      ).then((value) {
+                        print("Sucessfully created the chore");
+                      }).catchError((error) {
+                        print("Failed to create" + error.toString());
+                      });
+                      Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => savePage()),
                         );
