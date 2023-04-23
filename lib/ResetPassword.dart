@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:password_boggler/Reusuable_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);
@@ -15,24 +17,23 @@ class _ResetPasswordState extends State<ResetPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
-        title: const Text(
-          "Reset Password",
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
       body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-              color: Colors.blue),
+              color: Colors.grey),
           child: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
                 child: Column(
                   children: <Widget>[
+                    Container(
+                      margin: const EdgeInsets.only(top:20, bottom: 20),
+                      child: Text(
+                        'Enter your email to reset your password',
+                        style: GoogleFonts.shrikhand(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white.withOpacity(0.9)),
+                      ),
+                    ),
                     const SizedBox(
                       height: 20,
                     ),
