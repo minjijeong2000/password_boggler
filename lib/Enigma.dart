@@ -111,10 +111,43 @@ class Engima
                 Click();
 
             }//end of if
-            int sym =
+
         }//end of for loop
 
+        int sym = (input.length)%4;
+        switch(sym)
+        {
+            case 0:
+                {
+                    encrypted += "!";
+                }
+                break;
+            case 1:
+                {
+                    encrypted += "@";
+                }
+                break;
+            case 2:
+                {
+                    encrypted += "$";
+                }
+                break;
+            case 3:
+                {
+                    encrypted += "&";
+                }
+                break;
+            default:
+                {
+                    encrypted += "_";
+                }
+                break;
+        }//end of switch
+
+        int numbers = pow(2,numUsedRotors)%(input.length);
+        encrypted += numbers;
         return encrypted;
+
     }//end of scramble
 
     void Click()
